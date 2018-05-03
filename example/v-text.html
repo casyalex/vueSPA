@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-text实例</title>
+</head>
+<body>
+    <h1>v-text & v-html实例</h1>
+    <hr>
+    <div id="app">
+        <div>{{message}}</div>
+        <div v-text="message"></div>
+        <div v-text="dodo"></div>
+        <div v-html="dodo"></div>
+    </div>
+    
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        /*
+        {{xxx}},这种情况是有弊端的，就是当我们网速很慢或者javascript出错时，会暴露我们的{{xxx}}。
+        Vue给我们提供的v-text,就是解决这个问题的。
+
+        双大括号会将数据解释为纯文本，而非HTML。为了输出真正的HTML，你就需要使用v-html 指令。
+
+        总结：
+        v-text = 插值 {{}}
+        v-html能解析标签，尽量少用，有安全问题，容易XSS攻击，表单绝对不能用。
+        */
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello world!by Vue",
+                dodo: "<h2>hello world</h2>"
+            }
+        })
+    </script>
+</body>
+</html>

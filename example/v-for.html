@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-for</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="item in sortItem">
+                {{item}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(student,index) in sortStudent">
+                {{index+1}}:{{student.name}}-{{student.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items:[53,23,14,54,36,28,7],
+                students:[
+                    {name:'Jspang',age:33},
+                    {name:'Panda',age:28},
+                    {name:'Panpan',age:23},
+                    {name:'king',age:13}
+                ]
+            },
+            computed:{
+                /*
+                注意 不能重复赋值items，只能另起sortItem，因为Vue不允许污染原变量。
+                */
+
+                sortItem:function(){
+                    return this.items.sort(sortNumber);
+                },
+                sortStudent:function(){
+                    return sortByKey(this.students,'age');
+                }
+            }
+        })
+        //sort 排序方法，默认只会根据第一个数字的大小排，要实现真正排序由小到大，需要自己建一个return a-b方法
+        function sortNumber(a,b){
+            return a-b;
+        }
+        function sortByKey(array,key){
+            return array.sort(function(a,b){
+                var x=a[key];
+                var y=b[key];
+                return ((x<y)?-1:((x>y)?1:0));
+            });
+        }
+    </script>
+</body>
+
+</html>
