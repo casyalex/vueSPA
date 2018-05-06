@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <panda data-loca="china" :here="where"></panda> 
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data:{
+                where:'Sichuan'
+            },
+            components: {
+                'panda': {
+                    template: `
+                        <div style="color:green">panda from {{here}} - {{dataLoca}}</div>
+                    `,
+                    props:['here','dataLoca']  //属性，注意要用数组传进来,有-要用小驼峰写
+                }       //局部组件
+            }
+        })
+    </script>
+</body>
+
+</html>

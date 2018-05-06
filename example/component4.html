@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component4</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Component4</h1>
+    <hr>
+    <div id="app">
+        <component :is="message"></component>
+        <button @click="changeComp">变变变</button>
+    </div>
+
+    <script type="text/javascript">
+        var componentA={
+            template:`
+                <div style="color:blue">Componet A.</div>
+            `
+        };
+        var componentB = {
+            template: `
+                <div style="color:grey">Componet B.</div>
+            `
+        }
+        var componentC = {
+            template: `
+                <div style="color:gold">Componet C.</div>
+            `
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "componentA",
+            },
+            components: {
+                "componentA": componentA,
+                "componentB": componentB,
+                "componentC": componentC,
+            },
+            methods:{
+                changeComp:function(){
+                    if(this.message == "componentA"){
+                        this.message="componentB";
+                    }else if(this.message == "componentB"){
+                        this.message = "componentC";
+                    }else if(this.message == "componentC"){
+                        this.message = "componentA";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

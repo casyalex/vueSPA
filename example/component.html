@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <casyalex></casyalex>
+        <panda></panda>
+    </div>
+    <div id="app2">
+        <casyalex></casyalex>
+    </div>
+    <casyalex></casyalex>
+    <!-- 这尼玛不管用，必须放在Vue实例化中。 就算是全局组件-->
+
+
+    <script type="text/javascript">
+        Vue.component('casyalex',{
+            template:`
+                <div style="color:red">我是全局的casyalex组件</div>
+            `
+        });     //全局组件
+
+
+        var app = new Vue({
+            el: '#app',
+            components:{
+                'panda':{
+                    template: `
+                        <div style="color:green">我是局部的panda组件</div>
+                    `
+                }       //局部组件
+            }
+        })
+        var app2 = new Vue({
+                el: '#app2',
+                data: {
+                    message: "hello world!by Vue"
+                }
+            })
+    </script>
+</body>
+
+</html>
