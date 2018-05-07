@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example method Demo</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <h1>example method Demo</h1>
+    <hr>
+    <div id="app">
+
+    </div>
+    <button onclick="destroy()">unistall</button>
+    <button onclick="reload()">reload</button>
+    <button onclick="tick()">nexttick</button>
+
+    <script type="text/javascript">
+        var casyalex= Vue.extend({
+            template:`<div>{{message}}</div>`,
+            data:function(){
+                return {
+                    message:'111112222'
+                }
+            },
+            mounted:function(){
+                console.log('mounted 被创建！')
+            },
+            destroyed:function(){
+                console.log('destroyed 销毁后')
+            },
+            updated:function(){
+                console.log('updated 更新后')
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+        })
+        var ca = new casyalex().$mount('#app');
+
+        function destroy(){
+            ca.$destroy();
+        };
+        function reload(){
+            ca.$forceUpdate();
+        };
+        function tick() {
+            ca.message = "update message info ";
+            ca.$nextTick(function () {
+                console.log('message更新完后我被调用了');
+            })
+        };
+    </script>
+</body>
+
+</html>

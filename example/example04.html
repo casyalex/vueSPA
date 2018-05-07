@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example slot</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <h1>example slot</h1>
+    <hr>
+    <div id="app">
+        <casyalex>
+            <span slot="blogUrl">{{alexData.blogUrl}}</span>
+            <span slot="netName">{{alexData.netName}}</span>
+            <span slot="skill">{{alexData.skill}}</span>
+        </casyalex>
+    </div>
+
+    <template id="tep">
+        <div>
+            <p>博客地址：<slot name="blogUrl"></slot></p>
+            <p>网名：<slot name="netName"></slot></p>
+            <p>技能：<slot name="skill"></slot></p>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        var casyalex={
+            template:'#tep'
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                alexData:{
+                    blogUrl:'http://pandalex.com',
+                    netName:'软爆',
+                    skill:'webFront'
+                }
+            },
+            components:{
+                "casyalex":casyalex
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>mixins</h1>
+    <hr>
+    <div id="app">
+        {{score}}
+        <button @click="add">++++</button>
+    </div>
+
+    <script type="text/javascript">
+        var addConsole={
+            updated:function(){
+                console.log('数据发生变化，变成了'+this.score);
+            }
+        };
+        Vue.mixin({
+            updated:function(){
+                console.log('全局的，看看谁先执行')
+            }
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                score: 1
+            },
+            methods:{
+                add:function(){
+                    this.score++;
+                }
+            },
+            updated:function(){
+                console.log("原生的，看看谁先执行");    //原生的后执行
+            },
+            mixins:[addConsole]
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed Option</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>computed Option</h1>
+    <hr>
+    <div id="app">
+        {{newPrice}}
+        <ul>
+            <li v-for="item in reverse">{{item.title}}-{{item.date}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var newsList=[
+            {
+                title:'骗术升级！不用验证码不用打电话，他们照样把你卡上的钱转走！',
+                date:'2018/5/5'
+            },
+            {
+                title: '阿里巴巴初创时的十八罗汉，离开阿里之后都有什么故事？',
+                date: '2018/5/6'
+            },
+            {
+                title: '冰箱里的肉冻多久就不能吃了？一张表总结得清清楚楚',
+                date: '2018/5/7'
+            },
+            {
+                title: '爱心村被取缔下的李利娟“善恶”',
+                date: '2018/5/8'
+            },
+            {
+                title: '清华大学的“90后”学霸已成为发射场上最闪耀的“新星”',
+                date: '2018/5/9'
+            }
+        ];
+        var app = new Vue({
+            el: '#app',
+            data:{
+                price:100,
+                newsList:newsList
+            },
+            computed:{
+                newPrice:function(){
+                    return '￥'+this.price+'元';
+                },
+                reverse:function(){
+                    return this.newsList.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

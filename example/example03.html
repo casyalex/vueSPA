@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例事件</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>实例事件</h1>
+    <hr>
+    <div id="app">
+        本场比赛得分：{{score}}
+        <button @click="plus">加分</button>
+        
+        <br>
+        <input type="text" @keyup.enter="submit" v-model="score2">
+    </div>
+    <button onclick="minus()">减分</button>
+    <button onclick="minusonce()">减分一次</button>
+    <button onclick="off()">off</button>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                score: 0,
+                score2: 2
+            },
+            methods: {
+                plus: function () {
+                    this.score++;
+                },
+                submit: function () {
+                    this.score += parseInt(this.score2);
+                }
+            }
+        })
+        app.$on('minus',function(){
+            console.log('执行了外部事件')
+            this.score--;
+        });
+        app.$once('minusonce', function () {
+                console.log('执行了一次外部事件')
+                this.score--;
+        });
+        function minus(){
+            app.$emit('minus');
+        };
+        function minusonce(){
+            app.$emit('minusonce');
+        };
+        function off() {
+            app.$off('minus');
+        };
+    </script>
+</body>
+
+</html>

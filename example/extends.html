@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>extends</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>extends</h1>
+    <hr>
+    <div id="app">
+        ${score}
+        <button @click="add">++++</button>
+    </div>
+
+    <script type="text/javascript">
+        var extendsObj={
+            updated:function(){
+                console.log('我是扩展的update');
+            },
+            methods:{
+                add: function () {
+                    console.log('我是扩展地方法');
+                }
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                score: 1
+            },
+            methods: {
+                add: function () {
+                    this.score++;
+                }
+            },
+            updated:function(){
+                console.log('我是原生的update');
+            },
+            extends:extendsObj,
+            delimiters:['${','}']   //更改插值形式
+        })
+    </script>
+</body>
+
+</html>
