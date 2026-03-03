@@ -7,5 +7,5 @@ Intranet-WiFi = direct, interface=en0
 
 [Rule]
 # 使用 insert=1 将这些规则强行插入到所有规则的最前面，防止被代理服务商的规则拦截
-DOMAIN-SUFFIX,neiwang.com,Intranet-WiFi,insert=1
+DOMAIN-SUFFIX,turtle.deckers.com,Intranet-WiFi,insert=1
 IP-CIDR,10.0.0.0/8,Intranet-WiFi,no-resolve,insert=1
